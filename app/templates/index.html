@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraud Call Detection</title>
+</head>
+<body>
+<h1>Fraud Call Detection</h1>
+<form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="audio" accept="audio/*" required />
+    <button type="submit">Upload</button>
+</form>
+<p id="result"></p>
+
+<script>
+    document.getElementById('uploadForm').onsubmit = async function(e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        let response = await fetch('/predict', {
+            method: 'POST',
+            body: formData
+        });
+        let result = await response.json();
+        if (result.error) {
+            document.getElementById('result').textContent = result.error;
+        } else {
+            document.getElementById('result').textContent = `Text: ${result.text} \nPrediction: ${result.prediction}`;
+        }
+    };
+</script>
+</body>
+</html>
