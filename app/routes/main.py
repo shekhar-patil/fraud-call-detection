@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, render_template
 import speech_recognition as sr
+import pandas as pd
 from app.models.fraud_detection import load_data, preprocess_data, train_model, preprocess_input, predict_label
 
 main = Blueprint('main', __name__)
