@@ -21,9 +21,9 @@
         });
         let result = await response.json();
         if (result.error) {
-            document.getElementById('result').textContent = result.error;
+            document.getElementById('result').innerHTML = result.error;
         } else {
-            document.getElementById('result').textContent = `Text: ${result.text} \nPrediction: ${result.prediction}`;
+            document.getElementById('result').innerHTML = `Text: ${result.text} <br> Prediction: ${result.prediction}`;
         }
     };
 </script>
