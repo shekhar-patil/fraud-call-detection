@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+.navbar {
+    background-color: #343a40;
+    padding: 1rem;
+    color: white;
+    text-align: center;
+}
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+.footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.result {
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+.fraud {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.normal {
+    background-color: #d4edda;
+    color: #155724;
+}
+.description {
+    margin-bottom: 1.5rem;
+}
+table {
+    margin: 0 auto;
+}
