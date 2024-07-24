@@ -1,15 +1,19 @@
+/* main.css */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f9fa;
 }
+
 .navbar {
     background-color: #343a40;
     padding: 1rem;
     color: white;
     text-align: center;
 }
+
 .container {
     max-width: 600px;
     margin: 2rem auto;
@@ -19,6 +23,7 @@ body {
     border-radius: 8px;
     text-align: center;
 }
+
 .footer {
     background-color: #343a40;
     color: white;
@@ -28,23 +33,34 @@ body {
     bottom: 0;
     width: 100%;
 }
+
 .result {
     padding: 0.5rem;
     border-radius: 4px;
     margin-top: 1rem;
     font-weight: bold;
 }
+
 .fraud {
     background-color: #f8d7da;
     color: #721c24;
 }
+
 .normal {
     background-color: #d4edda;
     color: #155724;
 }
+
 .description {
     margin-bottom: 1.5rem;
 }
+
 table {
     margin: 0 auto;
+}
+
+.loader {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1rem;
 }

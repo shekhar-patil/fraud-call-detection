@@ -1,61 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Fraud Call Detection - GSLab Hackathon 2024</title>
-        <link rel="stylesheet" type="text/css" href="static/main.css">
-    </head>
-    <body>
-        <div class="navbar">
-            <h1>Fraud Call Detection</h1>
-        </div>
+<head>
+    <title>Fraud Call Detection - GSLab Hackathon 2024</title>
+    <link rel="stylesheet" type="text/css" href="static/main.css">
+</head>
+<body>
+<div class="navbar">
+    <h1>Fraud Call Detection</h1>
+</div>
 
-        <div class="container">
-            <div class="description">
-                <h2>About the Application</h2>
-                <p>This application is designed to detect fraudulent calls by analyzing audio recordings. Upload an audio file to see if it is classified as a fraud call or a normal call.</p>
-                <p><strong>Project for GSLab Hackathon 2024</strong></p>
-                <p>We developed this project as part of the GSLab Hackathon 2024, showcasing our innovative approach to fraud detection using speech recognition and machine learning techniques.</p>
-            </div>
-        </div>
+<div class="container">
+    <div class="description">
+        <h2>About the Application</h2>
+        <p>This application is designed to detect fraudulent calls by analyzing audio recordings. Upload an audio file to see if it is classified as a fraud call or a normal call.</p>
+        <p><strong>Project for GSLab Hackathon 2024</strong></p>
+        <p>We developed this project as part of the GSLab Hackathon 2024, showcasing our innovative approach to fraud detection using speech recognition and machine learning techniques.</p>
+    </div>
+</div>
 
-        <div class="container">
-            <form id="uploadForm" enctype="multipart/form-data">
-                <p>Upload a call recording to determine whether it is fraud or not.</p>
-                <table>
-                    <tr>
-                        <td><input type="file" name="audio" accept="audio/*" required /></td>
-                        <td><button type="submit">Upload</button></td>
-                    </tr>
-                </table>
-            </form>
-            <p id="result"></p>
-        </div>
+<div class="container">
+    <form id="uploadForm" enctype="multipart/form-data">
+        <p>Upload a call recording to determine whether it is fraudulent or not.</p>
+        <table>
+            <tr>
+                <td><input type="file" name="audio" accept="audio/*" required /></td>
+                <td><button type="submit">Upload</button></td>
+            </tr>
+        </table>
+    </form>
+    <div id="loader" class="loader" style="display: none;">We are analyzing the audio...</div>
+    <p id="result"></p>
+</div>
 
-        <div class="footer">
-            <p>&copy; 2024 GSLab Hackathon</p>
-        </div>
-        <script>
-            document.getElementById('uploadForm').onsubmit = async function(e) {
-                e.preventDefault();
-                let formData = new FormData(this);
-                let response = await fetch('/predict', {
-                    method: 'POST',
-                    body: formData
-                });
-                let result = await response.json();
-                let resultElement = document.getElementById('result');
-                if (result.error) {
-                    resultElement.innerHTML = result.error;
-                    resultElement.className = 'result';
-                } else {
-                    resultElement.innerHTML = `Text: ${result.text} <br> Prediction: ${result.prediction}`;
-                    if (result.prediction === 'fraud') {
-                        resultElement.className = 'result fraud';
-                    } else {
-                        resultElement.className = 'result normal';
-                    }
-                }
-            };
-        </script>
-    </body>
+<div class="footer">
+    <p>&copy; 2024 GSLab Hackathon</p>
+</div>
+
+<script>
+    document.getElementById('uploadForm').onsubmit = async function(e) {
+        e.preventDefault();
+        let formData = new FormData(this);
+        let resultElement = document.getElementById('result');
+        let loader = document.getElementById('loader');
+
+        // Show the loader and hide the result
+        loader.style.display = 'block';
+        resultElement.style.display = 'none';
+
+        let response = await fetch('/predict', {
+            method: 'POST',
+            body: formData
+        });
+        let result = await response.json();
+
+        // Hide the loader and show the result
+        loader.style.display = 'none';
+        resultElement.style.display = 'block';
+
+        if (result.error) {
+            resultElement.innerHTML = result.error;
+            resultElement.className = 'result';
+        } else {
+            resultElement.innerHTML = `Text: ${result.text} <br> Prediction: ${result.prediction}`;
+            if (result.prediction === 'fraud') {
+                resultElement.className = 'result fraud';
+            } else {
+                resultElement.className = 'result normal';
+            }
+        }
+    };
+</script>
+</body>
 </html>
