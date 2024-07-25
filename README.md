@@ -2,6 +2,8 @@
 
 This application is designed to detect fraudulent calls by analyzing audio recordings. Upload an audio file to see if it is classified as a fraud call or a normal call. This project was developed as part of the GSLab Hackathon 2024, showcasing our innovative approach to fraud detection using speech recognition and machine learning techniques.
 
+![Dashboard Screenshot](app/static/dashboard_screenshot.png)
+
 ## Table of Contents
 
 - [Installation](#installation)
